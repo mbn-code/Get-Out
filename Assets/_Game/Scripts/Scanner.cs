@@ -161,12 +161,12 @@ namespace LRS
                         {
                             if (hit.collider.CompareTag(REJECT_LAYER_NAME)) continue;
                             _positionsList.Add(hit.point);
-                            _lineRenderer.enabled = true;
-                            _lineRenderer.SetPositions(new[]
-                            {
-                                transform.position,
-                                hit.point
-                            });
+                            //_lineRenderer.enabled = true;
+                            //_lineRenderer.SetPositions(new[]
+                            //{
+                            //    transform.position,
+                            //    hit.point
+                            //});
                             //_particleAmount++;
                             //_currentVFX.SetInt(PARTICLE_AMOUNT_PARAMETER_NAME, _particleAmount);
                         }

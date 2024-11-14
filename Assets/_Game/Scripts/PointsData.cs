@@ -2,6 +2,7 @@
  * Author: Leonhard Robin Schnaitl
  * GitHub: https://github.com/leonhardrobin
 */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -16,6 +17,7 @@ namespace LRS
         [HideInInspector] public VisualEffect currentVisualEffect;
         [HideInInspector] public List<Vector3> positionsList = new();
         [HideInInspector] public Texture2D texture;
+        public List<float> timestamps = new(); // Add this line
         [HideInInspector] public Color[] positionsAsColors;
 
         [ContextMenu("Clear Data")]
@@ -25,6 +27,7 @@ namespace LRS
             positionsList.Clear();
             texture = null;
             positionsAsColors = null;
+            timestamps.Clear();
         }
     }
 }
