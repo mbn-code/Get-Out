@@ -3,6 +3,7 @@
  * GitHub: https://github.com/leonhardrobin
 */
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,7 +25,6 @@ namespace LRS
         private const string TEXTURE_NAME = "PositionsTexture";
         private const string RESOLUTION_PARAMETER_NAME = "Resolution";
 
-        [SerializeField] private bool reuseOldParticles = false;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private PlayerInput playerInput;
         [SerializeField] private GameObject vfxContainer;
@@ -37,13 +37,17 @@ namespace LRS
         [SerializeField] private int resolution = 100;
         [SerializeField] private float pointLifetime = 5f; // Duration in seconds
 
+        [SerializeField] private float cooldownTime = 6f; // Cooldown duration in seconds
+        private bool _isCooldown;
+        private float _lastFireTime;
+
         private bool _createNewVFX;
 
         private void Start()
         {
             _fire = playerInput.actions["Fire"];
             _changeRadius = playerInput.actions["Scroll"];
-
+ 
             pointsData.ForEach(data =>
             {
                 data.ClearData();
@@ -75,6 +79,7 @@ namespace LRS
             Vector3 transformPos = transform.position;
             int loopLength = texture.width * texture.height;
             int posListLen = pos.Length;
+            float currentTime = Time.time;
 
             for (int i = 0; i < loopLength; i++)
             {
@@ -116,10 +121,18 @@ namespace LRS
             return vfx;
         }
 
+        private IEnumerator CoolDown()
+        {
+            yield return new WaitForSeconds(cooldownTime);
+            _isCooldown = false;
+        }
+
         private void Scan()
         {
-            if (_fire.IsPressed())
+            if (_fire.IsPressed() && !_isCooldown)
             {
+                _isCooldown = true;
+                StartCoroutine(CoolDown());
                 for (int i = 0; i < pointsPerScan; i++)
                 {
                     Vector3 randomPoint = Random.insideUnitSphere * radius;
@@ -133,29 +146,12 @@ namespace LRS
                         int resolution2 = resolution * resolution;
                         pointsData.ForEach(data =>
                         {
-                            data.includedTags.ForEach(tag =>
+                            data.spawnTimestamp = Time.time; // Set spawntime
+                            data.includedTags.ForEach(tag => // Check om farven matcher target
                             {
-                                if (hit.collider.CompareTag(tag))
+                                if (hit.collider.CompareTag(tag)) // Check om farven matcher det man rammer
                                 {
-                                    if (data.positionsList.Count < resolution2)
-                                    {
-                                        data.positionsList.Add(hit.point);
-                                        data.timestamps.Add(Time.time);
-                                    }
-                                    else if (reuseOldParticles)
-                                    {
-                                        data.positionsList.RemoveAt(0);
-                                        data.timestamps.RemoveAt(0);
-                                        data.positionsList.Add(hit.point);
-                                        data.timestamps.Add(Time.time);
-                                    }
-                                    else
-                                    {
-                                        _createNewVFX = true;
-                                        data.currentVisualEffect = NewVisualEffect(data.prefab, out data.texture, out data.positionsAsColors);
-                                        data.positionsList.Clear();
-                                        data.timestamps.Clear();
-                                    }
+                                    data.positionsList.Add(hit.point);
                                 }
                             });
                         });
@@ -169,6 +165,7 @@ namespace LRS
                 pointsData.ForEach(data =>
                 {
                     ApplyPositions(data.positionsList, data.currentVisualEffect, data.texture, data.positionsAsColors);
+                    StartCoroutine(data.AlphaLoop(pointLifetime));
                 });
             }
         }
@@ -179,15 +176,15 @@ namespace LRS
             pointsData.ForEach(data =>
             {
                 bool pointsRemoved = false;
-                for (int i = data.timestamps.Count - 1; i >= 0; i--)
+                for (int i = data.positionsList.Count - 1; i >= 0; i--)
                 {
-                    if (currentTime - data.timestamps[i] > pointLifetime)
+                    if (currentTime - data.spawnTimestamp > pointLifetime)
                     {
                         data.positionsList.RemoveAt(i);
-                        data.timestamps.RemoveAt(i);
                         pointsRemoved = true;
                     }
                 }
+
                 if (pointsRemoved)
                 {
                     ApplyPositions(data.positionsList, data.currentVisualEffect, data.texture, data.positionsAsColors);

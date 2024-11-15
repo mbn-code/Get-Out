@@ -4177,7 +4177,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32490
+  m_Name: pb_Mesh32498
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -10054,6 +10054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1725586707}
+  - component: {fileID: 1725586711}
   - component: {fileID: 1725586710}
   - component: {fileID: 1725586708}
   - component: {fileID: 1725586709}
@@ -10235,13 +10236,45 @@ MonoBehaviour:
   playerInput: {fileID: 1034844714}
   vfxContainer: {fileID: 2037175779}
   castPoint: {fileID: 1349352296}
-  radius: 1
-  maxRadius: 1
-  minRadius: 1
-  pointsPerScan: 1
-  range: 30
+  radius: 5
+  maxRadius: 5
+  minRadius: 5
+  pointsPerScan: 7500
+  range: 20
   resolution: 100
-  pointLifetime: 45
+  pointLifetime: 5
+--- !u!114 &1725586711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725586706}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7804062a03cc5489565db784ef917a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsData:
+  - {fileID: 11400000, guid: e331183ea620c91428fae3b1cf22b06a, type: 2}
+  - {fileID: 11400000, guid: 91bec6bfaa1dca04685e568842022dec, type: 2}
+  - {fileID: 11400000, guid: 2b1be7eb18fa64e4caf7a8d403d482c9, type: 2}
+  - {fileID: 11400000, guid: ac46d118836a405478652e979553d16a, type: 2}
+  - {fileID: 11400000, guid: 7ba8cdb9ea40ce448bbf44e9933df80f, type: 2}
+  - {fileID: 11400000, guid: d8d7b3c44eab5c546bb30deedf8aa2c9, type: 2}
+  reuseOldParticles: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  playerInput: {fileID: 1034844714}
+  vfxContainer: {fileID: 2037175779}
+  castPoint: {fileID: 1349352296}
+  radius: 5
+  pointsPerScan: 7500
+  range: 20
+  resolution: 100
+  pointLifetime: 5
+  cooldownTime: 5
 --- !u!43 &1731510923
 Mesh:
   m_ObjectHideFlags: 0
