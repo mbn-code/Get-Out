@@ -204,6 +204,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Clue discovery system
+    const clues = {
+        'train_station_-_open_room': {
+            description: 'A suspicious ticket found on the ground.',
+            discovered: false
+        },
+        'train_station_-_booth': {
+            description: 'A hidden compartment in the booth.',
+            discovered: false
+        },
+        // Add more clues for other rooms...
+    };
+
+    // Function to handle clue discovery
+    function discoverClue(roomId) {
+        const clue = clues[roomId];
+        if (clue && !clue.discovered) {
+            clue.discovered = true;
+            showClueModal(clue.description);
+        }
+    }
+
+    // Show clue modal
+    function showClueModal(description) {
+        const modal = document.getElementById('clueModal');
+        const clueDescription = document.getElementById('clueDescription');
+        clueDescription.textContent = description;
+        modal.style.display = 'block';
+    }
+
+    // Close modal functionality
+    document.querySelector('.close').onclick = function() {
+        document.getElementById('clueModal').style.display = 'none';
+    };
+
+    // Add to evidence log functionality
+    document.getElementById('addToEvidenceLog').onclick = function() {
+        // Logic to add clue to evidence log
+        console.log('Clue added to evidence log');
+        document.getElementById('clueModal').style.display = 'none';
+    };
+
+    // Event listener for tool buttons
+    document.querySelectorAll('.tool-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const tool = e.target.dataset.tool;
+            // Placeholder for tool interactions
+            console.log(`Tool used: ${tool}`);
+        });
+    });
+
     // Event Listeners
     stageSelect.addEventListener('change', (e) => {
         const stage = e.target.value;
