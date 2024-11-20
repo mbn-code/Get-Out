@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Room Explorer</h1>
+            <nav>
+                <select id="stageSelect">
+                    <option value="">Select Stage...</option>
+                    <option value="stage1">Stage 1: Train Station</option>
+                    <option value="stage2">Stage 2: Underground</option>
+                    <option value="stage3">Stage 3: Police Station</option>
+                    <option value="stage4">Stage 4: Maintenance</option>
+                </select>
+                <select id="roomSelect">
+                    <option value="">Select Room...</option>
+                </select>
+            </nav>
+        </header>
+
+        <main>
+            <div class="game-container">
+                <div class="map-area">
+                    <canvas id="mapCanvas"></canvas>
+                </div>
+                <div class="controls-panel">
+                    <div class="tools">
+                        <h3>Tools</h3>
+                        <button class="tool-btn" data-tool="inspect">
+                            <span class="icon">🔍</span> Inspect
+                        </button>
+                        <button class="tool-btn" data-tool="mark">
+                            <span class="icon">📍</span> Mark Location
+                        </button>
+                        <button class="tool-btn" data-tool="notes">
+                            <span class="icon">📝</span> Add Note
+                        </button>
+                    </div>
+                    <div class="symbols-panel">
+                        <h3>Room Symbols</h3>
+                        <div class="symbol-grid">
+                            <!-- Symbols will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-panel">
+                <h3>Room Information</h3>
+                <div id="roomInfo" class="room-info">
+                    Select a stage and room to view information
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
