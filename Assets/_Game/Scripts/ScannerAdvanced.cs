@@ -1,8 +1,3 @@
-/*
- * Author: Leonhard Robin Schnaitl
- * GitHub: https://github.com/leonhardrobin
-*/
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,13 +7,8 @@ using Random = UnityEngine.Random;
 
 namespace LRS
 {
-    [RequireComponent(typeof(LineRenderer))]
     public class ScannerAdvanced : MonoBehaviour
     {
-        private InputAction _fire;
-        private InputAction _changeRadius;
-        private LineRenderer _lineRenderer;
-
         [SerializeField] private List<PointsData> pointsData = new();
 
         private const string REJECT_LAYER_NAME = "PointReject";
@@ -26,28 +16,26 @@ namespace LRS
         private const string RESOLUTION_PARAMETER_NAME = "Resolution";
 
         [SerializeField] private LayerMask layerMask;
-        [SerializeField] private PlayerInput playerInput;
-        [SerializeField] private GameObject vfxContainer;
+        [SerializeField] private InputActionProperty pinchAction;
+        private InputAction _fire => pinchAction.action;
+        private GameObject vfxContainer;
         [SerializeField] private Transform castPoint;
         [SerializeField] private float radius = 10f;
-        [SerializeField] private float maxRadius = 10f;
-        [SerializeField] private float minRadius = 1f;
         [SerializeField] private int pointsPerScan = 100;
         [SerializeField] private float range = 10f;
         [SerializeField] private int resolution = 100;
         [SerializeField] private float pointLifetime = 5f; // Duration in seconds
-
         [SerializeField] private float cooldownTime = 6f; // Cooldown duration in seconds
+        [SerializeField] private float coneAngle = 30f; // Angle of the cone in degrees
+
         private bool _isCooldown;
         private float _lastFireTime;
-
         private bool _createNewVFX;
 
         private void Start()
         {
-            _fire = playerInput.actions["Fire"];
-            _changeRadius = playerInput.actions["Scroll"];
- 
+            vfxContainer = GameObject.Find("Graphs");
+
             pointsData.ForEach(data =>
             {
                 data.ClearData();
@@ -60,16 +48,7 @@ namespace LRS
         private void FixedUpdate()
         {
             Scan();
-            ChangeRadius();
             RemoveOldPoints();
-        }
-
-        private void ChangeRadius()
-        {
-            if (_changeRadius.triggered)
-            {
-                radius = Mathf.Clamp(radius + _changeRadius.ReadValue<float>() * Time.deltaTime, minRadius, maxRadius);
-            }
         }
 
         private void ApplyPositions(List<Vector3> positionsList, VisualEffect currentVFX, Texture2D texture, Color[] positions)
@@ -135,21 +114,22 @@ namespace LRS
                 StartCoroutine(CoolDown());
                 for (int i = 0; i < pointsPerScan; i++)
                 {
-                    Vector3 randomPoint = Random.insideUnitSphere * radius;
-                    randomPoint += castPoint.position;
-                    Vector3 dir = (randomPoint - transform.position).normalized;
+                    // Generate a random direction within the cone angle
+                    float angleX = Random.Range(-coneAngle / 2, coneAngle / 2);
+                    float angleY = Random.Range(-coneAngle / 2, coneAngle / 2);
+                    Quaternion rotation = Quaternion.Euler(angleX, angleY, 0);
+                    Vector3 randomDirection = rotation * castPoint.forward;
 
-                    if (Physics.Raycast(transform.position, dir, out RaycastHit hit, range, layerMask))
+                    if (Physics.Raycast(castPoint.position, randomDirection, out RaycastHit hit, range, layerMask))
                     {
                         if (hit.collider.CompareTag(REJECT_LAYER_NAME)) continue;
 
-                        int resolution2 = resolution * resolution;
                         pointsData.ForEach(data =>
                         {
-                            data.spawnTimestamp = Time.time; // Set spawntime
-                            data.includedTags.ForEach(tag => // Check om farven matcher target
+                            data.spawnTimestamp = Time.time; // Set spawn time
+                            data.includedTags.ForEach(tag =>
                             {
-                                if (hit.collider.CompareTag(tag)) // Check om farven matcher det man rammer
+                                if (hit.collider.CompareTag(tag))
                                 {
                                     data.positionsList.Add(hit.point);
                                 }
@@ -158,7 +138,7 @@ namespace LRS
                     }
                     else
                     {
-                        Debug.DrawRay(transform.position, dir * range, Color.red);
+                        Debug.DrawRay(castPoint.position, randomDirection * range, Color.red);
                     }
                 }
 
@@ -193,4 +173,3 @@ namespace LRS
         }
     }
 }
-
