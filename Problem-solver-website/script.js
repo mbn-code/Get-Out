@@ -33,6 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
             mapUrl: 'maps/tile_room.png',
             scale: 1.0,
             defaultPosition: { x: 0, y: 0 }
+        },
+        'maze_room': {
+            mapUrl: 'maps/maze_room.png',
+            scale: 1.0,
+            defaultPosition: { x: 0, y: 0 }
         }
     };
 
@@ -141,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'stage1': ['Train Station - Open Room', 'Train Station - Booth'],
             'stage2': ['Basement'],
             'stage3': ['Police Locker Room'],
-            'stage4': ['Tile Room']
+            'stage4': ['Tile Room', 'Maze Room']
         };
 
         rooms[stage].forEach(room => {
@@ -181,6 +186,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'tile_room': {
                 description: 'Location: Maintenance section\nLighting: Flickering fluorescent\nNotable features: Tiled walls and floor\nSymbols: 🧹 Mop, ⬜ Tile, 🚰 Sink, ⚠️ Wet Floor',
                 symbols: ['🧹', '⬜', '🚰', '⚠️']
+            },
+            'maze_room': {
+                description: 'Location: Maze room\nLighting: Dim, flickering\nNotable features: Maze walls, dead ends\nSymbols: 🚶‍♂️ Explorer, 🚪 Door, ❌ Dead End, 🗝️ Key',
+                symbols: ['🚶‍♂️', '🚪', '❌', '🗝️']
             }
         };
 
