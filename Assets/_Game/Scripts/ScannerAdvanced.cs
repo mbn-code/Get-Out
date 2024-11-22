@@ -20,16 +20,15 @@ namespace LRS
         private InputAction _fire => pinchAction.action;
         private GameObject vfxContainer;
         [SerializeField] private Transform castPoint;
-        [SerializeField] private float radius = 10f;
         [SerializeField] private int pointsPerScan = 100;
         [SerializeField] private float range = 10f;
         [SerializeField] private int resolution = 100;
         [SerializeField] private float pointLifetime = 5f; // Duration in seconds
         [SerializeField] private float cooldownTime = 6f; // Cooldown duration in seconds
         [SerializeField] private float coneAngle = 30f; // Angle of the cone in degrees
+        [SerializeField] private AudioSource CameraClickEffect;
 
         private bool _isCooldown;
-        private float _lastFireTime;
         private bool _createNewVFX;
 
         private void Start()
@@ -110,6 +109,7 @@ namespace LRS
         {
             if (_fire.IsPressed() && !_isCooldown)
             {
+                CameraClickEffect.Play();
                 _isCooldown = true;
                 StartCoroutine(CoolDown());
                 for (int i = 0; i < pointsPerScan; i++)
