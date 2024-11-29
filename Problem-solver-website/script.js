@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const tempCtx = tempCanvas.getContext('2d');
             tempCanvas.width = 800;
             tempCanvas.height = 600;
-            
+              
             // Draw placeholder map
             tempCtx.fillStyle = 'rgba(76, 175, 80, 0.1)';
             tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
@@ -194,28 +194,28 @@ document.addEventListener('DOMContentLoaded', () => {
         // Room-specific information and symbols
         const roomInfo = {
             'train_station_-_open_room': {
-                description: 'Location: Main area of the train station\nLighting: Well lit, fluorescent\nNotable features: Large windows, ticket machines\nSymbols: 🎫 Ticket, 🧳 Luggage, 📰 Newspaper, 🪑 Bench',
+                description: 'Location: Main area of the train station\nSymbols: 🎫 Ticket, 🧳 Luggage, 📰 Newspaper, 🪑 Bench',
                 symbols: ['🎫', '🧳', '📰', '🪑']
             },
             'train_station_-_booth': {
-                description: 'Location: Ticket booth area\nLighting: Dim, single overhead light\nNotable features: Small enclosed space, ticket counter\nSymbols: 💰 Cash Register, 📢 Intercom, 🎟️ Tickets, 🖨️ Printer',
-                symbols: ['🖨️']
+                description: 'Location: Ticket booth area\nSymbols: 💰 Cash Register, 📢 Intercom, 🎟️ Tickets, 🖨️ Printer',
+                symbols: ['📠']
             },
             'basement': {
-                description: 'Location: Below ground level\nLighting: Poor, single bulb\nNotable features: Exposed pipes, concrete walls\nSymbols: 🔧 Pipe, 📰 Newspaper, 🔌 Electrical Box, 🧰 Tools',
-                symbols: ['🔧', '📰', '🔌', '🧰']
+                description: 'Location: Below ground level\nSymbols: 🔧 Wrench, 📰 Newspaper, 🛢️ Barrels, 🧰 Toolbox',
+                symbols: ['🔧', '📰', '🛢️', '🧰']
             },
             'police_locker_room': {
-                description: 'Location: Police station wing\nLighting: Standard office lighting\nNotable features: Rows of lockers, benches\nSymbols: 🔐 Locker, 👮 Badge, 📋 Roster, 🚿 Shower',
-                symbols: ['🔐', '👮', '📋', '🚿']
+                description: 'Location: Police station wing\nSymbols: ⭐ Police Badge, 🧥 Coat, 📋 Documents , 🗄️ Locker',
+                symbols: ['⭐', '🧥', '📋', '🗄️']
             },
             'tile_room': {
-                description: 'Location: Maintenance section\nLighting: Flickering fluorescent\nNotable features: Tiled walls and floor\nSymbols: ⬜ Tilefloor, 🟥 Notice board, 🟨 Notice board, 🟩 Notice board',
+                description: 'Location: Maintenance section\nSymbols: ⬜ Tilefloor, 🟥 Notice board, 🟨 Notice board, 🟩 Notice board',
                 symbols: ['⬜', '🟥', '🟨', '🟩']
             },
             'maze_room': {
-                description: 'Location: Maze room\nLighting: Dim, flickering\nNotable features: Maze walls, dead ends\nSymbols: 🚶‍♂️ Explorer, 🚪 Door, ❌ Dead End, 🗝️ Key',
-                symbols: ['🚶‍♂️', '🚪', '❌', '🗝️']
+                description: 'Location: Maze room\nSymbols: 🗝️ Key',
+                symbols: ['🗝️']
             }
         };
 
