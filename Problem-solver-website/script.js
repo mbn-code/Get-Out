@@ -168,24 +168,24 @@ document.addEventListener('DOMContentLoaded', () => {
         // Room-specific information and symbols
         const roomInfo = {
             'train_station_-_open_room': {
-                description: 'Location: Main area of the train station\nLighting: Well lit, fluorescent\nNotable features: Large windows, ticket machines\nSymbols: 🎫 Ticket, 🚂 Train, 👥 Crowd, 🪑 Bench',
-                symbols: ['🎫', '🚂', '👥', '🪑']
+                description: 'Location: Main area of the train station\nLighting: Well lit, fluorescent\nNotable features: Large windows, ticket machines\nSymbols: 🎫 Ticket, 🧳 Luggage, 📰 Newspaper, 🪑 Bench',
+                symbols: ['🎫', '🧳', '📰', '🪑']
             },
             'train_station_-_booth': {
                 description: 'Location: Ticket booth area\nLighting: Dim, single overhead light\nNotable features: Small enclosed space, ticket counter\nSymbols: 💰 Cash Register, 📢 Intercom, 🎟️ Tickets, 🖨️ Printer',
-                symbols: ['💰', '📢', '🎟️', '🖨️']
+                symbols: ['🖨️']
             },
             'basement': {
-                description: 'Location: Below ground level\nLighting: Poor, single bulb\nNotable features: Exposed pipes, concrete walls\nSymbols: 🔧 Pipe, 📦 Crate, 🔌 Electrical Box, 🧰 Tools',
-                symbols: ['🔧', '📦', '🔌', '🧰']
+                description: 'Location: Below ground level\nLighting: Poor, single bulb\nNotable features: Exposed pipes, concrete walls\nSymbols: 🔧 Pipe, 📰 Newspaper, 🔌 Electrical Box, 🧰 Tools',
+                symbols: ['🔧', '📰', '🔌', '🧰']
             },
             'police_locker_room': {
                 description: 'Location: Police station wing\nLighting: Standard office lighting\nNotable features: Rows of lockers, benches\nSymbols: 🔐 Locker, 👮 Badge, 📋 Roster, 🚿 Shower',
                 symbols: ['🔐', '👮', '📋', '🚿']
             },
             'tile_room': {
-                description: 'Location: Maintenance section\nLighting: Flickering fluorescent\nNotable features: Tiled walls and floor\nSymbols: 🧹 Mop, ⬜ Tile, 🚰 Sink, ⚠️ Wet Floor',
-                symbols: ['🧹', '⬜', '🚰', '⚠️']
+                description: 'Location: Maintenance section\nLighting: Flickering fluorescent\nNotable features: Tiled walls and floor\nSymbols: ⬜ Tilefloor, 🟥 Notice board, 🟨 Notice board, 🟩 Notice board',
+                symbols: ['⬜', '🟥', '🟨', '🟩']
             },
             'maze_room': {
                 description: 'Location: Maze room\nLighting: Dim, flickering\nNotable features: Maze walls, dead ends\nSymbols: 🚶‍♂️ Explorer, 🚪 Door, ❌ Dead End, 🗝️ Key',
@@ -204,14 +204,24 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateSymbolGrid(symbols) {
         const symbolGrid = document.querySelector('.symbol-grid');
         symbolGrid.innerHTML = '';
-        symbols.forEach(symbol => {
-            const button = document.createElement('button');
-            button.className = 'symbol-btn';
-            button.setAttribute('data-symbol', symbol);
-            button.textContent = symbol;
-            symbolGrid.appendChild(button);
-        });
+    
+        // Check if symbols exist and is a non-empty array
+        if (symbols && Array.isArray(symbols) && symbols.length > 0) {
+            symbols.forEach(symbol => {
+                const button = document.createElement('button');
+                button.className = 'symbol-btn';
+                button.setAttribute('data-symbol', symbol);
+                button.textContent = symbol;
+                symbolGrid.appendChild(button);
+            });
+        } else {
+            // Handle case where no symbols are provided
+            const noSymbolMessage = document.createElement('p');
+            noSymbolMessage.textContent = 'No symbols available for this room.';
+            symbolGrid.appendChild(noSymbolMessage);
+        }
     }
+    
 
     // Clue discovery system
     const clues = {
