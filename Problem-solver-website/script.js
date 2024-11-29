@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Map configurations for each room
     const mapConfig = {
         'train_station_-_open_room': {
-            mapUrl: 'maps/train_station_open.png', // You'll add these images later
+            mapUrl: 'maps/train_station_open.png', // Use the relative path to your PNG file
             scale: 1.0,
             defaultPosition: { x: 0, y: 0 }
         },
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function drawMap(roomId) {
         loadMapImage(roomId)
             .then(img => {
-                // Clear canvas
+                // Clear the canvas
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
                 // Calculate scaling to fit the canvas while maintaining aspect ratio
@@ -131,10 +131,36 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => {
                 console.error('Error loading map:', error);
-                // Draw error message on canvas
+                // Display an error message on the canvas
                 ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
-                ctx.fillText('Error loading map', canvas.width/2, canvas.height/2);
+                ctx.font = '16px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('Failed to load map image.', canvas.width / 2, canvas.height / 2);
             });
+    }
+
+    // Load map image
+    function loadMapImage(roomId) {
+        return new Promise((resolve, reject) => {
+            if (mapImages[roomId]) {
+                resolve(mapImages[roomId]);
+                return;
+            }
+
+            const config = mapConfig[roomId];
+            if (!config) {
+                reject(`No map configuration found for room ID: ${roomId}`);
+                return;
+            }
+
+            const img = new Image();
+            img.onload = () => {
+                mapImages[roomId] = img; // Cache the image
+                resolve(img);
+            };
+            img.onerror = () => reject(`Failed to load map image: ${config.mapUrl}`);
+            img.src = config.mapUrl; // Use the specified path in the mapConfig
+        });
     }
 
     // Update room options based on stage
