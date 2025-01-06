@@ -1,9 +1,13 @@
 using UnityEngine;
+using System;
 
 public class PlatformTrigger : MonoBehaviour
 {
     [SerializeField] private string correctObjectName; // Name of the correct object
     [SerializeField] private GameObject actionObject; // Object to activate or any other action
+
+    public event Action OnCorrectObjectPlaced; // Event to notify the manager
+    public bool IsCorrectObjectPlaced { get; private set; } // Property to check if the correct object is placed
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +16,17 @@ public class PlatformTrigger : MonoBehaviour
         {
             // Perform the desired action
             PerformAction();
+            IsCorrectObjectPlaced = true;
+            OnCorrectObjectPlaced?.Invoke(); // Notify the manager
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Reset the flag if the object leaves the platform
+        if (other.gameObject.name == correctObjectName)
+        {
+            IsCorrectObjectPlaced = false;
         }
     }
 
