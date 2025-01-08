@@ -67,6 +67,28 @@ select:focus {
     box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
 
+#downloadGameBtn {
+    padding: 12px 20px;
+    margin: 20px 0;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#downloadGameBtn:hover {
+    background-color: #45a049;
+}
+
 .game-container {
     display: grid;
     grid-template-columns: 2fr 1fr;

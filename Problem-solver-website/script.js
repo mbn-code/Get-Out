@@ -300,6 +300,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Event listener for Download Game button
+    document.getElementById('downloadGameBtn').addEventListener('click', () => {
+        window.location.href = 'game.zip'; // Update with the correct path to your zip file
+    });
+
     // Event Listeners
     stageSelect.addEventListener('change', (e) => {
         const stage = e.target.value;
