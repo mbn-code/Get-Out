@@ -9,34 +9,7 @@ namespace LRS
         private static readonly List<Vector2Int> allowedCoordinates = new List<Vector2Int>
         {
             // Hardcoded path along the top row, then down the far right column
-            
-            /* 
 
-            2d array representation
-
-            /* Path representation:
-            [.][.][.][.][.]
-            [.][.][.][.][.]
-            [.][.][.][.][.]
-            [.][x][x][.][.]
-            [.][x][.][.][.]
-            [x][x][.][.][.]
-            [x][.][.][.][.]
-            [.][x][.][.][.]
-            [.][x][.][.][.]
-            [.][x][x][.][.]
-            [.][.][x][.][.]
-            [.][.][x][.][.]
-            [.][.][x][.][.]
-            [.][.][x][.][.]
-            [.][.][x][.][.]
-            [.][.][x][.][.]
-            [.][.][x][.][.]
-            */
-
-            
-             */
-            
             new Vector2Int(0, 0),
             new Vector2Int(1, 0),
             new Vector2Int(1, 1),
