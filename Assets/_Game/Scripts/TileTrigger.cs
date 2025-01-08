@@ -10,6 +10,24 @@ namespace LRS
         {
             // Hardcoded path along the top row, then down the far right column
 
+
+            /*
+            
+             represent as a 2d array of 0s and 1s
+                0s are not walkable
+                1s are walkable
+
+            in ascii like this [*] not walkable [x] walkable 
+
+            [-][-][-][-][-][-][-][-][-][-][-][-][-][-][x][-][-]
+            [-][-][-][-][-][-][-][-][-][-][-][-][-][-][x][x][-]
+            [-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][x][-]
+            [-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][x][x]
+            [-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][-][x]
+
+             */
+
+
             new Vector2Int(0, 0),
             new Vector2Int(1, 0),
             new Vector2Int(1, 1),
