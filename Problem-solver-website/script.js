@@ -32,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'tile_room': {
             mapUrl: 'maps/tile_room.png',
             scale: 1.0,
-            defaultPosition: { x: 0, y: 0 }
+            defaultPosition: { x: 0, y: 0 },
+            pathUrl: 'path/path.png',
+            pathOffset: { x: 50, y: 50 }
         },
         'maze_room': {
             mapUrl: 'maps/maze_room.png',
@@ -128,6 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Draw the image
                 ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+                
+                // Removed the path drawing code from here
             })
             .catch(error => {
                 console.error('Error loading map:', error);
@@ -185,12 +189,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateRoomInfo(stage, room) {
         const infoPanel = document.getElementById('roomInfo');
+        // Remove existing path box if it exists
+        const existingPathBox = document.querySelector('.path-box');
+        if (existingPathBox) {
+            existingPathBox.remove();
+        }
+
         if (!stage || !room) {
             infoPanel.textContent = 'Select a stage and room to view information';
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             return;
         }
         
+        const config = mapConfig[room];
+        // Add path box for Tile Room
+        if (room === 'tile_room' && config.pathUrl) {
+            const pathBox = document.createElement('div');
+            pathBox.className = 'path-box';
+            pathBox.innerHTML = `
+                <h3>Path Solution</h3>
+                <div class="path-image-container">
+                    <img src="${config.pathUrl}" alt="Solution Path" style="max-width: 100%; display: block; margin: 0 auto;">
+                </div>
+            `;
+            document.querySelector('.info-panel').appendChild(pathBox);
+        }
+
         // Room-specific information and symbols
         const roomInfo = {
             'train_station_-_open_room': {
