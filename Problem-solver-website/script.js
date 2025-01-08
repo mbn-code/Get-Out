@@ -230,8 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 symbols: ['🔧', '📰', '🛢️', '🧰']
             },
             'police_locker_room': {
-                description: 'Location: Police station wing\nSymbols: ⭐ Police Badge, 🧥 Coat, 📋 Documents , 🗄️ Locker',
-                symbols: ['⭐', '🧥', '📋', '🗄️']
+                description: 'Location: Locker room with cubes\n🟥 Pink cube, 🟩 Green cube, 🟨 Yellow cube',
+                symbols: ['pink cube', 'Greeen cube', 'yellow cube']
             },
             'tile_room': {
                 description: 'Location: Maintenance section\nSymbols: ⬜ Tilefloor, 🟥 Notice board, 🟨 Notice board, 🟩 Notice board',
