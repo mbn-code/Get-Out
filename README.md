@@ -34,46 +34,96 @@ A larger challenge room featuring:
 - Checkered floor split into two sections
 - Complex path-following puzzle based on matched patterns
 
-## 🛠 Technical Details
+## 🛠 Development Process & Methodology
 
-Built using:
-- Unity Engine
-- XR Interaction Toolkit
-- Custom Lidar scanning system
-- Networked co-op functionality
+### Double Diamond Design Process
+The project followed the Double Diamond methodology to ensure a systematic approach to game development:
 
-## 🎯 Development Philosophy
+1. **Discover Phase**
+- Researched player needs and puzzle mechanics
+- Analyzed successful escape room and horror games
+- Identified key elements: VR, co-op gameplay, horror atmosphere
+- Initial brainstorming included concepts like:
+  - Lidar Scanner mechanics
+  - Horror entity integration
+  - Map Guide Player system
+  - Dark Room environments
+  - Communication-based puzzles
 
-The game was developed using the Double Diamond design methodology:
-1. **Discover**: Research into player needs and puzzle mechanics
-2. **Define**: Analysis of collected data to form concrete problems
-3. **Develop**: Experimentation with various solutions through user testing
-4. **Deliver**: Final implementation and polish of selected solutions
+2. **Define Phase**
+- Focused on core game requirements
+- Established target audience through player personas
+- Developed key gameplay pillars:
+  - Asymmetric co-op experience
+  - Communication-driven gameplay
+  - Atmospheric horror elements
+  - Scanner-based exploration
 
-## 🎨 Design Goals
+### Project Management Tools
 
-- Balance difficulty levels for engaging gameplay
-- Create intuitive communication mechanics
-- Maintain suspense without overwhelming players
-- Ensure puzzles are challenging but solvable
-- Foster genuine cooperation between players
+#### Hack N Plan Implementation
+The project was managed through Hack N Plan with four main boards:
 
-## 🎮 Inspiration
+1. **Pre-Game**
+- Initial ideation
+- Scrum meeting implementation
+- Project planning documentation
 
-The game draws inspiration from popular titles such as:
-- We Were Here
-- Keep Talking and Nobody Explodes
-- Hello Neighbor
-- Nox Timore (sound design)
+2. **Beta**
+- Core feature development
+- Initial puzzle implementation
+- Playtesting phase
+
+3. **Release**
+- Bug fixes and optimization
+- Final user testing
+- Performance improvements
+
+4. **Documentation**
+- Technical documentation
+- User guides
+- Design documentation
+
+### Development Insights
+
+#### Theoretical Foundations
+- **Gestalt Principles**: Applied laws of closure and similarity in puzzle design
+- **Player Types**: Focused on Explorer and Achiever types (Bartle's Taxonomy)
+- **Design Considerations**: 
+  - Large, simple shapes for dark environment visibility
+  - Gamified web interface for Problem Solver
+  - Intuitive puzzle progression
+
+#### Iterative Development
+Regular user testing led to significant improvements:
+- Maze complexity adjustments based on feedback
+- Enhanced scanner mechanics
+- Refined puzzle difficulty curves
+- Improved communication tools
+
+## 🎯 Lessons Learned
+
+- **Scope Management**: Project scope could have been smaller for better quality control
+- **Time Management**: Need for better initial planning of puzzles and room layouts
+- **Team Communication**: Scrum meetings proved effective for team coordination
+- **Tool Utilization**: Hack N Plan was valuable for task management and assignment
+- **Skill Distribution**: Early cross-training in tools like ProBuilder would be beneficial
+
+## 👥 Credits
+### Development Team
+
+- [@mbn-code](https://github.com/mbn-code)
+- [@OssieFromDK](https://github.com/OssieFromDK)
+- [@BigManWilli](https://github.com/BigManWilli)
+- [@KevinChoco](https://github.com/KevinChoco)
 
 ## 🔧 Installation & Setup
 
-[Installation instructions to be added]
-
-## 👥 Credits
-
-[Team member credits to be added]
+1. Install Unity Hub
+2. Install Unity version 2022.3.46f1 through Unity Hub
+3. Clone the repository
+4. Open the project in Unity 2022.3.46f1
 
 ## 📄 License
 
-[License information to be added]
+#### MIT [License](LICENSE)
