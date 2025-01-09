@@ -173,10 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!stage) return;
 
         const rooms = {
-            'stage1': ['Train Station - Open Room', 'Train Station - Booth'],
-            'stage2': ['Basement'],
-            'stage3': ['Police Locker Room'],
-            'stage4': ['Tile Room', 'Maze Room']
+            'stage1': ['Train Station - Open Room'],
+            'stage2': ['Police Locker Room'],
+            'stage3': ['Tile Room', 'Maze Room']
         };
 
         rooms[stage].forEach(room => {
@@ -218,28 +217,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Room-specific information and symbols
         const roomInfo = {
             'train_station_-_open_room': {
-                description: 'Location: Main area of the train station\nSymbols: 🎫 Ticket, 🧳 Luggage, 📰 Newspaper, 🪑 Bench',
-                symbols: ['🎫', '🧳', '📰', '🪑']
-            },
-            'train_station_-_booth': {
-                description: 'Location: Ticket booth area\nSymbols: 💰 Cash Register, 📢 Intercom, 🎟️ Tickets, 🖨️ Printer',
-                symbols: ['📠']
-            },
-            'basement': {
-                description: 'Location: Below ground level\nSymbols: 🔧 Wrench, 📰 Newspaper, 🛢️ Barrels, 🧰 Toolbox',
-                symbols: ['🔧', '📰', '🛢️', '🧰']
+                description: 'Location: Find white grey keycard, and use on the green keypad to access the booth.\nSymbols: 🟧 Hatch, ⬜ Keycard, 🟩 Keypad, 🟥 Door',
+                symbols: ['🟧', '⬜', '🟩', '🟥']
             },
             'police_locker_room': {
                 description: 'Location: Reverse order is the way to get through. \nPlace on green platforms close to the door. \nLocker room with cubes\n🟥 Pink cube, 🟩 Green cube, 🟨 Yellow cube',
                 symbols: ['pink cube', 'Greeen cube', 'yellow cube']
             },
             'tile_room': {
-                description: 'Location: Maintenance section\nSymbols: ⬜ Tilefloor, 🟥 Notice board, 🟨 Notice board, 🟩 Notice board',
-                symbols: ['⬜', '🟥', '🟨', '🟩']
+                description: 'Location: Maintenance section\nSymbols: ⬜ Tilefloor',
+                symbols: ['⬜']
             },
             'maze_room': {
-                description: 'Location: Maze room\nSymbols: 🗝️ Key',
-                symbols: ['🗝️']
+                description: 'Location: Maze room\nSymbols: 🗝️ Key, 🟫 Entrance, 🟨 Keydoor',
+                symbols: ['🗝️', '🟫', '🟨']
             }
         };
 
