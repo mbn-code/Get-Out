@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 symbols: ['🔧', '📰', '🛢️', '🧰']
             },
             'police_locker_room': {
-                description: 'Location: Locker room with cubes\n🟥 Pink cube, 🟩 Green cube, 🟨 Yellow cube',
+                description: 'Location: Reverse order is the way to get through. \nPlace on green platforms close to the door. \nLocker room with cubes\n🟥 Pink cube, 🟩 Green cube, 🟨 Yellow cube',
                 symbols: ['pink cube', 'Greeen cube', 'yellow cube']
             },
             'tile_room': {
